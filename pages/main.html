@@ -1,0 +1,221 @@
+<div class="row addNewContact"><label>Search: <input ng-model="searchContact" placeholder="Search by any field"></label> <button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#adding-new-contact">Add Contact</button></div>
+
+<div class="contactList">
+    <div class="row well listTitle">
+        <div class="col-sm-2">Name</div>
+        <div class="col-sm-3">Company</div>
+        <div class="col-sm-3">Mobile Phone</div>
+        <div class="col-sm-2">Email</div>
+        <div class="col-sm-2">Action</div>
+    </div>
+    <div class="row well" ng-repeat="contact in contacts | filter:searchContact">
+        <div ng-hide="contact.edit">
+            <div class="col-sm-2">
+                <a ng-click="showFullContact(contact)" data-toggle="modal" data-target="#full_contact">
+                    {{contact.name}}
+                </a>
+            </div>
+            <div class="col-sm-3">
+                {{contact.company}}
+            </div>
+            <div class="col-sm-3">
+                {{contact.phone.mobile}}
+            </div>
+            <div class="col-sm-2">
+                {{contact.email}}
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-info btn-xs" ng-click="editShow(contact)">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="removeContact(contact)">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <!--Editing contact-->
+        <form name="EditingContact" ng-show="contact.edit">
+            <div class="row">
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" ng-model="contact.name" required>
+                </div>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="company" placeholder="Enter Company" ng-model="contact.company" required>
+                </div>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone" ng-model="contact.phone.mobile" required>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="email" placeholder="Enter Email" ng-model="contact.email" required>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-success btn-sl" ng-disabled="EditingContact.$invalid" ng-click="editShow(contact)">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true">  Save</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row editAddress">
+                <div class="col-md-1 resultLabel">Address:</div>
+                <div class="col-md-6 result">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="street" placeholder="Enter Street" ng-model="contact.address.street" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="city" placeholder="Enter City" ng-model="contact.address.city" required>
+                        </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="state" placeholder="Enter State" ng-model="contact.address.state" required>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="zip" placeholder="Enter Zip" ng-model="contact.address.zip" required>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row phones">
+                <div class="col-sm-2 resultLabel">Work Phone:</div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter Work Phone" ng-model="contact.phone.work" required>
+                </div>
+                <div class="col-sm-2 resultLabel">Home Phone:</div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter home Phone" ng-model="contact.phone.home" required>
+                </div>
+            </div>
+            <div class="row note">
+                <div class="col-md-2 resultLabel">Note:</div>
+                <div class="col-md-7 result">
+                    <textarea rows="4" cols="50" class="form-control" placeholder="Enter Note (Optinal)" ng-model="contact.note">
+                    </textarea>
+                </div>
+            </div>
+            
+            
+        </form>
+    </div>
+</div>
+
+
+<!-- Adding new Contact -->
+<div class="modal" id="adding-new-contact">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="btn btn-danger glyphicon glyphicon-remove pull-right" data-dismiss="modal"></button>
+                <h2>Create New Contact </h2>
+            </div>
+            <div class="modal-body">
+                <form name="NewContact">
+                    <div class="row">
+                        <div class="col-md-5 resultLabel">Name:</div>
+                        <div class="col-md-7 result"><input type="text" class="form-control" id="name" placeholder="Enter Name" ng-model="name" required></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 resultLabel">Company:</div>
+                        <div class="col-md-7 result"> <input type="text" class="form-control" id="company" placeholder="Enter Company" ng-model="company" required></div>
+                    </div>
+                    <div class="row phone">
+                        <div class="col-md-5 resultLabel">Phone:</div>
+                        <div class="col-md-7 result">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="phone" placeholder="Enter Mobile" ng-model="phone.mobile" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="phone" placeholder="Enter Work" ng-model="phone.work" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="phone" placeholder="Enter Home" ng-model="phone.home" required>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 resultLabel">Email:</div>
+                        <div class="col-md-7 result"> <input type="text" class="form-control" id="email" placeholder="Enter Email" ng-model="email" required></div>
+                    </div>
+                    <div class="row address">
+                        <div class="col-md-5 resultLabel">Address:</div>
+                        <div class="col-md-7 result">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="street" placeholder="Enter Street" ng-model="address.street" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="street" placeholder="Enter City" ng-model="address.city" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="street" placeholder="Enter State" ng-model="address.state" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="street" placeholder="Enter Zip" ng-model="address.zip" required>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 resultLabel">Note:</div>
+                        <div class="col-md-7 result">
+                            <textarea rows="4" cols="50" class="form-control" placeholder="Enter Note (Optinal)" ng-model="note">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <button type="button" class="btn btn-success btn-xl pull-right" data-dismiss="modal" ng-disabled="NewContact.$invalid" ng-click="addContact(name,company,phone.mobile,phone.work,phone.home,email, address.street,address.city,address.state,address.zip, note)">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"> Save</span>
+                        </button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div><!-- Adding new Contact Ends -->
+
+
+<!--Show Full contact-->
+<div class="modal" id="full_contact">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="btn btn-danger glyphicon glyphicon-remove pull-right" data-dismiss="modal"></button>
+                <h2>{{fullContact.name}}</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 resultLabel">Company:</div>
+                    <div class="col-md-8 result">{{fullContact.company}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 resultLabel">Phone:</div>
+                    <div class="col-md-8 result">
+                        <div class="row">Mobile: {{fullContact.phone.mobile}},</div>
+                        <div class="row">Work:    {{fullContact.phone.work}},</div>
+                        <div class="row">Home:   {{fullContact.phone.home}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 resultLabel">Email:</div>
+                    <div class="col-md-8 result">{{fullContact.email}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 resultLabel">Address:</div>
+                    <div class="col-md-8 result">
+                        {{fullContact.address.street}}, {{fullContact.address.city}}, {{fullContact.address.state}} {{fullContact.address.zip}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 resultLabel">Note:</div>
+                    <div class="col-md-8 result">
+                        {{fullContact.note}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--End Show Full contact-->

@@ -1,0 +1,39 @@
+[
+    {
+        "name": "Joe Dowe",
+        "company": "Google Solution",
+        "phone": {
+            "home": "8094546544",
+            "mobile": "3472122233",
+            "work": "7047089078"
+        },
+        "email": "jdowe@gmail.com",
+        "address": {
+            "street": "300 87st",
+            "city": "Queens",
+            "state": "NY",
+            "zip": "11207"
+        },
+        "note": "My boss and CEO",
+        "edit": false
+        
+    },
+    {
+        "name": "Kari Bali",
+        "company": "American Solution",
+        "phone": {
+            "home": "8065556544",
+            "mobile": "3473477432",
+            "work": "7035089078"
+        },
+        "email": "kbali@yahoo.com",
+        "address": {
+            "street": "11 2st",
+            "city": "Bronx",
+            "state": "NY",
+            "zip": "12432"
+        },
+        "note": "We work togather",
+        "edit": false
+    }
+]

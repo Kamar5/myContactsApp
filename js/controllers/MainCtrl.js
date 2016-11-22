@@ -16,26 +16,50 @@ myContactApp.controller('MainCtrl', ['$scope','DataService', function($scope, Da
     
     $scope.addContact = function(name,company,phoneMobile,phoneWork,phoneHome,email, addressStreet,addressCity,addressState,addressZip,note){
         
-        return $scope.contacts.push({
-            name: name,
-            company: company,
-            phone: {
-                mobile: phoneMobile,
-                work: phoneWork,
-                home: phoneHome
-            },
-            email: email,
-            address: {
-                street: addressStreet,
-                city: addressCity,
-                state: addressState,
-                zip: addressZip,
-                
-            },
-            note: note,
-            edit: false
-        })
+        $scope.contacts.push({
+                name: name,
+                company: company,
+                phone: {
+                    mobile: phoneMobile,
+                    work: phoneWork,
+                    home: phoneHome
+                },
+                email: email,
+                address: {
+                    street: addressStreet,
+                    city: addressCity,
+                    state: addressState,
+                    zip: addressZip,
+
+                },
+                note: note,
+                edit: false
+            });
+//            $scope.name='',
+//            $scope.company='',
+//            $scope.phone.mobile='',
+//            $scope.phone.work='',
+//            $scope.phone.home='',
+//            $scope.email='',
+//            $scope.address.street='',
+//            $scope.address.city='',
+//            $scope.address.state='',
+//            $scope.address.zip='',
+//            $scope.note='',
+            $scope.name='';
+            $scope.company='';
+            $scope.phone.mobile='';
+            $scope.phone.work='';
+            $scope.phone.home='';
+            $scope.email='';
+            $scope.address.street='';
+            $scope.address.city='';
+            $scope.address.state='';
+            $scope.address.zip='';
+            $scope.note='';
+        
     };
+    
     
     $scope.edit = false;
     

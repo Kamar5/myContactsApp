@@ -8,5 +8,8 @@ myContactApp.config(['$routeProvider', '$locationProvider', function($routeProvi
     }).
     otherwise({redirectTo:'/'})
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+    	enable: true,
+    	requireBase: false
+    });
 }]);
